@@ -2,7 +2,7 @@
  <br>
 The run_analysis.R script extracts the measurements from the "UCI Human Activity Recognition Using Smartphones dataset" that are the mean or standard deviation of other measurements in the dataset, for 30 subjects performing 6 activities while wearing Samsung Galaxy S II smartphones. It outputs a tidy data set taking the average for each combination of subject, activity, and measurement type. <br>
 
-The script does this by combining the UCI HAR dataset files X_test.txt, subject_test.txt, y_test.txt, X_train.txt, subject_train.txt, and y_train.txt into a single data frame. As in the original dataset, measurement units are normalized and bounded within [-1,1]. Then it selects a subset of measurements whose names contain the strings "mean()" or "std()". The activity numbers are transformed into factors with labels from the activity_labels.txt file. The measurement names are modified to remove the "()" characters and to transform the inital "t" into "time-" and "f" into "freq-". Finally, a new tidy dataset is created by combining the multiple measurement columns into a single column with the name "measurement" and calculating the mean of these values by using the dplyr gather and summarize functions.<br>
+The script does this by combining the UCI HAR dataset files X_test.txt, subject_test.txt, y_test.txt, X_train.txt, subject_train.txt, and y_train.txt into a single data frame. As in the original dataset, measurement units are normalized and bounded within [-1,1]. Then it selects a subset of measurements whose names contain the strings "mean()" or "std()". The activity numbers are transformed into factors with labels from the activity_labels.txt file. The measurement names are modified to remove the "()" characters, transform the inital "t" into "time-" and "f" into "frequency-", and expand "Acc" and "Gyro" to "Accelerometer"" and "Gyroscope". Finally, a new tidy dataset is created by combining the multiple measurement columns into a single column with the name "measurement" and calculating the mean of these values by using the dplyr gather and summarize functions.<br>
 
 The rest of this codebook is modified and updated from the codebook files in the UCI HAR Dataset: <br>
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones <br>
@@ -16,33 +16,33 @@ The acceleration signal from the smartphone accelerometer X axis is in standard 
 Feature Selection  <br>
 ================= <br>
  <br>
-The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals time-Acc-XYZ and time-Gyro-XYZ. These time domain signals (prefix 'time') were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (time-BodyAcc-XYZ and time-GravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz.  <br>
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals time-Accelerometer-XYZ and time-Gyroscope-XYZ. These time domain signals (prefix 'time') were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (time-BodyAccelerometer-XYZ and time-GravityAccelerometer-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz.  <br>
  <br>
-Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (time-BodyAccJerk-XYZ and time-BodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (time-BodyAccMag, time-GravityAccMag, time-BodyAccJerkMag, time-BodyGyroMag, time-BodyGyroJerkMag).  <br>
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (time-BodyAccelerometerJerk-XYZ and time-BodyGyroscopeJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (time-BodyAccelerometerMag, time-GravityAccelerometerMag, time-BodyAccelerometerJerkMag, time-BodyGyroscopeMag, time-BodyGyroscopeJerkMag).  <br>
  <br>
-Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing freq-BodyAcc-XYZ, freq-BodyAccJerk-XYZ, freq-BodyGyro-XYZ, freq-BodyAccJerkMag, freq-BodyGyroMag, freq-BodyGyroJerkMag. (Note the 'freq-' to indicate frequency domain signals).  <br>
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing frequency-BodyAccelerometer-XYZ, frequency-BodyAccelerometerJerk-XYZ, frequency-BodyGyroscope-XYZ, frequency-BodyAccelerometerJerkMag, frequency-BodyGyroscopeMag, frequency-BodyGyroscopeJerkMag. (Note the 'frequency-' to indicate frequency domain signals).  <br>
    <br>
  <br>
 These signals were used to estimate variables of the feature vector for each pattern:   <br>
 '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions. <br>
  <br>
-time-BodyAcc-XYZ <br>
-time-GravityAcc-XYZ <br>
-time-BodyAccJerk-XYZ <br>
-time-BodyGyro-XYZ <br>
-time-BodyGyroJerk-XYZ <br>
-time-BodyAccMag <br>
-time-GravityAccMag <br>
-time-BodyAccJerkMag <br>
-time-BodyGyroMag <br>
-time-BodyGyroJerkMag <br>
-freq-BodyAcc-XYZ <br>
-freq-BodyAccJerk-XYZ <br>
-freq-BodyGyro-XYZ <br>
-freq-BodyAccMag <br>
-freq-BodyAccJerkMag <br>
-freq-BodyGyroMag <br>
-freq-BodyGyroJerkMag <br>
+time-BodyAccelerometer-XYZ <br>
+time-GravityAccelerometer-XYZ <br>
+time-BodyAccelerometerJerk-XYZ <br>
+time-BodyGyroscope-XYZ <br>
+time-BodyGyroscopeJerk-XYZ <br>
+time-BodyAccelerometerMag <br>
+time-GravityAccelerometerMag <br>
+time-BodyAccelerometerJerkMag <br>
+time-BodyGyroscopeMag <br>
+time-BodyGyroscopeJerkMag <br>
+frequency-BodyAccelerometer-XYZ <br>
+frequency-BodyAccelerometerJerk-XYZ <br>
+frequency-BodyGyroscope-XYZ <br>
+frequency-BodyAccelerometerMag <br>
+frequency-BodyAccelerometerJerkMag <br>
+frequency-BodyGyroscopeMag <br>
+frequency-BodyGyroscopeJerkMag <br>
  <br>
 The set of variables that were estimated from these signals are:  <br>
  <br>
@@ -50,72 +50,72 @@ mean: Mean value <br>
 std: Standard deviation <br>
  <br>
 Full list of measurement variables: <br>
-freq-BodyAcc-mean-X <br>
-freq-BodyAcc-mean-Y <br>
-freq-BodyAcc-mean-Z <br>
-freq-BodyAcc-std-X <br>
-freq-BodyAcc-std-Y <br>
-freq-BodyAcc-std-Z <br>
-freq-BodyAccJerk-mean-X <br>
-freq-BodyAccJerk-mean-Y <br>
-freq-BodyAccJerk-mean-Z <br>
-freq-BodyAccJerk-std-X <br>
-freq-BodyAccJerk-std-Y <br>
-freq-BodyAccJerk-std-Z <br>
-freq-BodyAccMag-mean <br>
-freq-BodyAccMag-std <br>
-freq-BodyBodyAccJerkMag-mean <br>
-freq-BodyBodyAccJerkMag-std <br>
-freq-BodyBodyGyroJerkMag-mean <br>
-freq-BodyBodyGyroJerkMag-std <br>
-freq-BodyBodyGyroMag-mean <br>
-freq-BodyBodyGyroMag-std <br>
-freq-BodyGyro-mean-X <br>
-freq-BodyGyro-mean-Y <br>
-freq-BodyGyro-mean-Z <br>
-freq-BodyGyro-std-X <br>
-freq-BodyGyro-std-Y <br>
-freq-BodyGyro-std-Z <br>
-time-BodyAcc-mean-X <br>
-time-BodyAcc-mean-Y <br>
-time-BodyAcc-mean-Z <br>
-time-BodyAcc-std-X <br>
-time-BodyAcc-std-Y <br>
-time-BodyAcc-std-Z <br>
-time-BodyAccJerk-mean-X <br>
-time-BodyAccJerk-mean-Y <br>
-time-BodyAccJerk-mean-Z <br>
-time-BodyAccJerk-std-X <br>
-time-BodyAccJerk-std-Y <br>
-time-BodyAccJerk-std-Z <br>
-time-BodyAccJerkMag-mean <br>
-time-BodyAccJerkMag-std <br>
-time-BodyAccMag-mean <br>
-time-BodyAccMag-std <br>
-time-BodyGyro-mean-X <br>
-time-BodyGyro-mean-Y <br>
-time-BodyGyro-mean-Z <br>
-time-BodyGyro-std-X <br>
-time-BodyGyro-std-Y <br>
-time-BodyGyro-std-Z <br>
-time-BodyGyroJerk-mean-X <br>
-time-BodyGyroJerk-mean-Y <br>
-time-BodyGyroJerk-mean-Z <br>
-time-BodyGyroJerk-std-X <br>
-time-BodyGyroJerk-std-Y <br>
-time-BodyGyroJerk-std-Z <br>
-time-BodyGyroJerkMag-mean <br>
-time-BodyGyroJerkMag-std <br>
-time-BodyGyroMag-mean <br>
-time-BodyGyroMag-std <br>
-time-GravityAcc-mean-X <br>
-time-GravityAcc-mean-Y <br>
-time-GravityAcc-mean-Z <br>
-time-GravityAcc-std-X <br>
-time-GravityAcc-std-Y <br>
-time-GravityAcc-std-Z <br>
-time-GravityAccMag-mean <br>
-time-GravityAccMag-std <br>
+frequency-BodyAccelerometer-mean-X <br>
+frequency-BodyAccelerometer-mean-Y <br>
+frequency-BodyAccelerometer-mean-Z <br>
+frequency-BodyAccelerometer-std-X <br>
+frequency-BodyAccelerometer-std-Y <br>
+frequency-BodyAccelerometer-std-Z <br>
+frequency-BodyAccelerometerJerk-mean-X <br>
+frequency-BodyAccelerometerJerk-mean-Y <br>
+frequency-BodyAccelerometerJerk-mean-Z <br>
+frequency-BodyAccelerometerJerk-std-X <br>
+frequency-BodyAccelerometerJerk-std-Y <br>
+frequency-BodyAccelerometerJerk-std-Z <br>
+frequency-BodyAccelerometerMag-mean <br>
+frequency-BodyAccelerometerMag-std <br>
+frequency-BodyBodyAccelerometerJerkMag-mean <br>
+frequency-BodyBodyAccelerometerJerkMag-std <br>
+frequency-BodyBodyGyroscopeJerkMag-mean <br>
+frequency-BodyBodyGyroscopeJerkMag-std <br>
+frequency-BodyBodyGyroscopeMag-mean <br>
+frequency-BodyBodyGyroscopeMag-std <br>
+frequency-BodyGyroscope-mean-X <br>
+frequency-BodyGyroscope-mean-Y <br>
+frequency-BodyGyroscope-mean-Z <br>
+frequency-BodyGyroscope-std-X <br>
+frequency-BodyGyroscope-std-Y <br>
+frequency-BodyGyroscope-std-Z <br>
+time-BodyAccelerometer-mean-X <br>
+time-BodyAccelerometer-mean-Y <br>
+time-BodyAccelerometer-mean-Z <br>
+time-BodyAccelerometer-std-X <br>
+time-BodyAccelerometer-std-Y <br>
+time-BodyAccelerometer-std-Z <br>
+time-BodyAccelerometerJerk-mean-X <br>
+time-BodyAccelerometerJerk-mean-Y <br>
+time-BodyAccelerometerJerk-mean-Z <br>
+time-BodyAccelerometerJerk-std-X <br>
+time-BodyAccelerometerJerk-std-Y <br>
+time-BodyAccelerometerJerk-std-Z <br>
+time-BodyAccelerometerJerkMag-mean <br>
+time-BodyAccelerometerJerkMag-std <br>
+time-BodyAccelerometerMag-mean <br>
+time-BodyAccelerometerMag-std <br>
+time-BodyGyroscope-mean-X <br>
+time-BodyGyroscope-mean-Y <br>
+time-BodyGyroscope-mean-Z <br>
+time-BodyGyroscope-std-X <br>
+time-BodyGyroscope-std-Y <br>
+time-BodyGyroscope-std-Z <br>
+time-BodyGyroscopeJerk-mean-X <br>
+time-BodyGyroscopeJerk-mean-Y <br>
+time-BodyGyroscopeJerk-mean-Z <br>
+time-BodyGyroscopeJerk-std-X <br>
+time-BodyGyroscopeJerk-std-Y <br>
+time-BodyGyroscopeJerk-std-Z <br>
+time-BodyGyroscopeJerkMag-mean <br>
+time-BodyGyroscopeJerkMag-std <br>
+time-BodyGyroscopeMag-mean <br>
+time-BodyGyroscopeMag-std <br>
+time-GravityAccelerometer-mean-X <br>
+time-GravityAccelerometer-mean-Y <br>
+time-GravityAccelerometer-mean-Z <br>
+time-GravityAccelerometer-std-X <br>
+time-GravityAccelerometer-std-Y <br>
+time-GravityAccelerometer-std-Z <br>
+time-GravityAccelerometerMag-mean <br>
+time-GravityAccelerometerMag-std <br>
 <br>
 Full list of activity variables: <br>
 WALKING <br>

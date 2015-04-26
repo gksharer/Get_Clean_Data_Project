@@ -27,7 +27,7 @@ all <- rbind(test,train)
 
 # Extract measurements that explicitly take the mean or standard deviation of other measurements
 # by matching column names containing mean() or std().
-all <- all[,!duplicated(colnames(all))]   # select won't work wth duplicate column names present
+all <- all[,!duplicated(colnames(all))]   # select won't work with duplicate column names present
 all_sm <- select(all,subject,activity,matches("mean\\("),matches("std\\("))
 
 # Use descriptive activity names to name the activities in the data set.
@@ -36,16 +36,18 @@ fact1 <- read.table("UCI HAR Dataset/activity_labels.txt")
 all_sm[,2] <- factor(all_sm[,2],labels=fact1[,2])
 
 # Appropriately label the data set with descriptive variable names. 
-# this step renames the columns by removing special characters and expanding intial t and f characters 
+# this step renames the columns by removing special characters and expanding t,f,Acc,Gyro strings 
 colnames(all_sm) <- gsub("\\(|\\)","",colnames(all_sm))
 colnames(all_sm) <- gsub("^t","time-",colnames(all_sm))
-colnames(all_sm) <- gsub("^f","freq-",colnames(all_sm))
+colnames(all_sm) <- gsub("^f","frequency-",colnames(all_sm))
+colnames(all_sm) <- gsub("Acc","Accelerometer",colnames(all_sm))
+colnames(all_sm) <- gsub("Gyro","Gyroscope",colnames(all_sm))
 
 # Create a second, independent tidy data set with the average of each measurement type for 
 # each activity and each subject.
 # Tidy data set : each variable forms a column (variables=subject,activity,measurement type,mean)
 #                 each observation forms a row (true)
-#                 each table stores data about one kind of observation (true)
+#                 each table stores data about one kind of observation (true, normalized)
 all_gather <- gather(all_sm,measurement,value, -subject,-activity)
 tidy_data <- summarize(group_by(all_gather,subject,activity,measurement),mean=mean(value))
 print(tidy_data)
