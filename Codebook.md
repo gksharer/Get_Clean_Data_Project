@@ -2,7 +2,7 @@
  <br>
 The run_analysis.R script extracts the measurements from the "UCI Human Activity Recognition Using Smartphones dataset" that are the mean or standard deviation of other measurements in the dataset, for 30 subjects performing 6 activities while wearing Samsung Galaxy S II smartphones. It outputs a tidy data set taking the average for each combination of subject, activity, and measurement type. <br>
 
-The script does this by combining the UCI HAR dataset files X_test.txt, subject_test.txt, y_test.txt, X_train.txt, subject_train.txt, and y_train.txt into a single data frame. As in the original dataset, measurement units are normalized and bounded within [-1,1]. Then it selects a subset of measurements whose names contain the strings "mean()" or "std()". The activity numbers are transformed into factors with labels from the activity_labels.txt file. The measurement names are modified to remove the "()" characters, transform the inital "t" into "time-" and "f" into "frequency-", and expand "Acc" and "Gyro" to "Accelerometer"" and "Gyroscope". Finally, a new tidy dataset is created by combining the multiple measurement columns into a single column with the name "measurement" and calculating the mean of these values by using the dplyr gather and summarize functions.<br>
+The script does this by combining the UCI HAR dataset files X_test.txt, subject_test.txt, y_test.txt, X_train.txt, subject_train.txt, and y_train.txt into a single data frame. As in the original dataset, measurement units are normalized and bounded within [-1,1]. Then it selects a subset of measurements whose names contain the strings "mean()" or "stddev()". The activity numbers are transformed into factors with labels from the activity_labels.txt file. The measurement names are modified to remove the "()" characters, transform the inital "t" into "time-" and "f" into "frequency-", and expand "Acc","Gyro", and "std" to "Accelerometer","Gyroscope", and "stddev" respectively. Finally, a new tidy dataset is created by combining the multiple measurement columns into a single column with the name "measurement" and calculating the mean of these values by using the dplyr gather and summarize functions.<br>
 
 The rest of this codebook is modified and updated from the codebook files in the UCI HAR Dataset: <br>
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones <br>
@@ -47,75 +47,75 @@ frequency-BodyGyroscopeJerkMag <br>
 The set of variables that were estimated from these signals are:  <br>
  <br>
 mean: Mean value <br>
-std: Standard deviation <br>
+stddev: Standard deviation <br>
  <br>
 Full list of measurement variables: <br>
 frequency-BodyAccelerometer-mean-X <br>
 frequency-BodyAccelerometer-mean-Y <br>
 frequency-BodyAccelerometer-mean-Z <br>
-frequency-BodyAccelerometer-std-X <br>
-frequency-BodyAccelerometer-std-Y <br>
-frequency-BodyAccelerometer-std-Z <br>
+frequency-BodyAccelerometer-stddev-X <br>
+frequency-BodyAccelerometer-stddev-Y <br>
+frequency-BodyAccelerometer-stddev-Z <br>
 frequency-BodyAccelerometerJerk-mean-X <br>
 frequency-BodyAccelerometerJerk-mean-Y <br>
 frequency-BodyAccelerometerJerk-mean-Z <br>
-frequency-BodyAccelerometerJerk-std-X <br>
-frequency-BodyAccelerometerJerk-std-Y <br>
-frequency-BodyAccelerometerJerk-std-Z <br>
+frequency-BodyAccelerometerJerk-stddev-X <br>
+frequency-BodyAccelerometerJerk-stddev-Y <br>
+frequency-BodyAccelerometerJerk-stddev-Z <br>
 frequency-BodyAccelerometerMag-mean <br>
-frequency-BodyAccelerometerMag-std <br>
+frequency-BodyAccelerometerMag-stddev <br>
 frequency-BodyBodyAccelerometerJerkMag-mean <br>
-frequency-BodyBodyAccelerometerJerkMag-std <br>
+frequency-BodyBodyAccelerometerJerkMag-stddev <br>
 frequency-BodyBodyGyroscopeJerkMag-mean <br>
-frequency-BodyBodyGyroscopeJerkMag-std <br>
+frequency-BodyBodyGyroscopeJerkMag-stddev <br>
 frequency-BodyBodyGyroscopeMag-mean <br>
-frequency-BodyBodyGyroscopeMag-std <br>
+frequency-BodyBodyGyroscopeMag-stddev <br>
 frequency-BodyGyroscope-mean-X <br>
 frequency-BodyGyroscope-mean-Y <br>
 frequency-BodyGyroscope-mean-Z <br>
-frequency-BodyGyroscope-std-X <br>
-frequency-BodyGyroscope-std-Y <br>
-frequency-BodyGyroscope-std-Z <br>
+frequency-BodyGyroscope-stddev-X <br>
+frequency-BodyGyroscope-stddev-Y <br>
+frequency-BodyGyroscope-stddev-Z <br>
 time-BodyAccelerometer-mean-X <br>
 time-BodyAccelerometer-mean-Y <br>
 time-BodyAccelerometer-mean-Z <br>
-time-BodyAccelerometer-std-X <br>
-time-BodyAccelerometer-std-Y <br>
-time-BodyAccelerometer-std-Z <br>
+time-BodyAccelerometer-stddev-X <br>
+time-BodyAccelerometer-stddev-Y <br>
+time-BodyAccelerometer-stddev-Z <br>
 time-BodyAccelerometerJerk-mean-X <br>
 time-BodyAccelerometerJerk-mean-Y <br>
 time-BodyAccelerometerJerk-mean-Z <br>
-time-BodyAccelerometerJerk-std-X <br>
-time-BodyAccelerometerJerk-std-Y <br>
-time-BodyAccelerometerJerk-std-Z <br>
+time-BodyAccelerometerJerk-stddev-X <br>
+time-BodyAccelerometerJerk-stddev-Y <br>
+time-BodyAccelerometerJerk-stddev-Z <br>
 time-BodyAccelerometerJerkMag-mean <br>
-time-BodyAccelerometerJerkMag-std <br>
+time-BodyAccelerometerJerkMag-stddev <br>
 time-BodyAccelerometerMag-mean <br>
-time-BodyAccelerometerMag-std <br>
+time-BodyAccelerometerMag-stddev <br>
 time-BodyGyroscope-mean-X <br>
 time-BodyGyroscope-mean-Y <br>
 time-BodyGyroscope-mean-Z <br>
-time-BodyGyroscope-std-X <br>
-time-BodyGyroscope-std-Y <br>
-time-BodyGyroscope-std-Z <br>
+time-BodyGyroscope-stddev-X <br>
+time-BodyGyroscope-stddev-Y <br>
+time-BodyGyroscope-stddev-Z <br>
 time-BodyGyroscopeJerk-mean-X <br>
 time-BodyGyroscopeJerk-mean-Y <br>
 time-BodyGyroscopeJerk-mean-Z <br>
-time-BodyGyroscopeJerk-std-X <br>
-time-BodyGyroscopeJerk-std-Y <br>
-time-BodyGyroscopeJerk-std-Z <br>
+time-BodyGyroscopeJerk-stddev-X <br>
+time-BodyGyroscopeJerk-stddev-Y <br>
+time-BodyGyroscopeJerk-stddev-Z <br>
 time-BodyGyroscopeJerkMag-mean <br>
-time-BodyGyroscopeJerkMag-std <br>
+time-BodyGyroscopeJerkMag-stddev <br>
 time-BodyGyroscopeMag-mean <br>
-time-BodyGyroscopeMag-std <br>
+time-BodyGyroscopeMag-stddev <br>
 time-GravityAccelerometer-mean-X <br>
 time-GravityAccelerometer-mean-Y <br>
 time-GravityAccelerometer-mean-Z <br>
-time-GravityAccelerometer-std-X <br>
-time-GravityAccelerometer-std-Y <br>
-time-GravityAccelerometer-std-Z <br>
+time-GravityAccelerometer-stddev-X <br>
+time-GravityAccelerometer-stddev-Y <br>
+time-GravityAccelerometer-stddev-Z <br>
 time-GravityAccelerometerMag-mean <br>
-time-GravityAccelerometerMag-std <br>
+time-GravityAccelerometerMag-stddev <br>
 <br>
 Full list of activity variables: <br>
 WALKING <br>

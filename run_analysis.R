@@ -36,12 +36,15 @@ fact1 <- read.table("UCI HAR Dataset/activity_labels.txt")
 all_sm[,2] <- factor(all_sm[,2],labels=fact1[,2])
 
 # Appropriately label the data set with descriptive variable names. 
-# this step renames the columns by removing special characters and expanding t,f,Acc,Gyro strings 
+# this step renames the columns by removing special characters and expanding t,f,Acc,Gyro,std strings.
+# for readability, I decided to use capital letters and the character "-" even though that may not fully 
+# comply with best practices for descriptive names. 
 colnames(all_sm) <- gsub("\\(|\\)","",colnames(all_sm))
 colnames(all_sm) <- gsub("^t","time-",colnames(all_sm))
 colnames(all_sm) <- gsub("^f","frequency-",colnames(all_sm))
 colnames(all_sm) <- gsub("Acc","Accelerometer",colnames(all_sm))
 colnames(all_sm) <- gsub("Gyro","Gyroscope",colnames(all_sm))
+colnames(all_sm) <- gsub("std","stddev",colnames(all_sm))
 
 # Create a second, independent tidy data set with the average of each measurement type for 
 # each activity and each subject.
