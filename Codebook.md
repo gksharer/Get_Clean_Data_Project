@@ -4,7 +4,6 @@ The run_analysis.R script extracts the measurements from the "UCI Human Activity
 
 The script does this by combining the UCI HAR dataset files X_test.txt, subject_test.txt, y_test.txt, X_train.txt, subject_train.txt, and y_train.txt into a single data frame. Then it selects a subset of measurements whose names contain the strings "mean()" or "std()". The activity numbers are transformed into factors with labels from the activity_labels.txt file. The measurement names are modified to remove the "()" characters and to transform the inital "t" into "time-" and "f" into "freq-". Finally, a new tidy dataset is created by combining the multiple measurement columns into a single column with the name "measurement" and calculating the mean of these values by using the dplyr gather and summarize functions. <br>
 
- <br>
 The rest of this codebook is copied and modified from the codebook files in the UCI HAR Dataset: <br>
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones <br>
  <br>
