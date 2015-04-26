@@ -36,7 +36,7 @@ fact1 <- read.table("UCI HAR Dataset/activity_labels.txt")
 all_sm[,2] <- factor(all_sm[,2],labels=fact1[,2])
 
 # Appropriately label the data set with descriptive variable names. 
-# this step renames the columns without special characters and with t and f expanded
+# this step renames the columns by removing special characters and expanding intial t and f characters 
 colnames(all_sm) <- gsub("\\(|\\)","",colnames(all_sm))
 colnames(all_sm) <- gsub("^t","time-",colnames(all_sm))
 colnames(all_sm) <- gsub("^f","freq-",colnames(all_sm))
