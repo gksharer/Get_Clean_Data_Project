@@ -47,9 +47,8 @@ colnames(all_sm) <- gsub("^f","freq-",colnames(all_sm))
 #                 each observation forms a row (true)
 #                 each table stores data about one kind of observation (true)
 all_gather <- gather(all_sm,measurement,value, -subject,-activity)
-tidy_average <- summarize(group_by(all_gather,subject,activity,measurement),mean=mean(value))
-tidy_average
-
+tidy_data <- summarize(group_by(all_gather,subject,activity,measurement),mean=mean(value))
+print(tidy_data)
 
 
 
