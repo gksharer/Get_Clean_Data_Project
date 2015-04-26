@@ -1,4 +1,4 @@
-#Codebook for the output of run_analysis.R <br>
+#Codebook for run_analysis.R <br>
  <br>
 The run_analysis.R script extracts the measurements from the "UCI Human Activity Recognition Using Smartphones dataset" that are the mean or standard deviation of other measurements in the dataset, for 30 subjects performing 6 activities while wearing Samsung Galaxy S II smartphones. It outputs a tidy data set taking the average for each combination of subject, activity, and measurement type. <br>
 
