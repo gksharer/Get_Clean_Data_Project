@@ -49,7 +49,7 @@ The set of variables that were estimated from these signals are:  <br>
 mean: Mean value <br>
 std: Standard deviation <br>
  <br>
-Full list of variables: <br>
+Full list of measurement variables: <br>
 freq-BodyAcc-mean-X <br>
 freq-BodyAcc-mean-Y <br>
 freq-BodyAcc-mean-Z <br>
@@ -116,5 +116,14 @@ time-GravityAcc-std-Y <br>
 time-GravityAcc-std-Z <br>
 time-GravityAccMag-mean <br>
 time-GravityAccMag-std <br>
-subject <br>
-activity <br>
+<br>
+Full list of activity variables: <br>
+WALKING <br>
+WALKING_UPSTAIRS <br>
+WALKING_DOWNSTAIRS <br>
+SITTING <br>
+STANDING <br>
+LAYING <br>
+
+Full list of subject variables: <br>
+integer values 1-30 <br>
