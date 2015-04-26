@@ -116,5 +116,5 @@ time-GravityAcc-std-Y <br>
 time-GravityAcc-std-Z <br>
 time-GravityAccMag-mean <br>
 time-GravityAccMag-std <br>
-subject
-activity
+subject <br>
+activity <br>
